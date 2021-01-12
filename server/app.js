@@ -17,14 +17,22 @@ app.get("/", (req, res) =>{
 })
 
 app.post("/snake", (req, res) => {
-    const Data = {
-        score: req.body.PB,
-        createdAt: new Date()
-    };
-    console.log(Data)
-    dataSet.insert(Data)
-    .then(createdData => {
-        res.json(createdData)
+    if(req.body.PB > 0){
+        const Data = {
+            score: req.body.PB
+        };
+        console.log(Data)
+        dataSet.insert(Data)
+        .then(createdData => {
+            res.json(createdData)
+        })
+    }
+})
+
+app.get("/snake", (req, res) => {
+    dataSet.find()
+    .then(data => {
+        res.json(data);
     })
 })
 

@@ -7,7 +7,7 @@ let display;
 let HighDisplay;
 
 function setup(){
-    let canvas = createCanvas(600, 600);
+    let canvas = createCanvas(500, 500);
     canvas.position((windowWidth - width) / 2,(windowHeight - height) / 2)
     frameRate(10);
     snake = new Snake()
