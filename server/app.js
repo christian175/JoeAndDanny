@@ -1,10 +1,11 @@
 const express = require("express")
 const cors = require("cors")
 const monk = require("monk")
+const dotenv = require("dotenv").config()
 
 const app = express()
 
-const db = monk('localhost/SnakeBoards');
+const db = monk(process.env.MONGO_URI || 'localhost/SnakeBoards');
 const dataSet = db.get("Scores")
 
 app.use(cors())
