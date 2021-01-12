@@ -1,16 +1,44 @@
 let snake;
 let scl = 20;
+let food
+let score = 0;
+let highScore = 0;
+let display;
+let HighDisplay;
 
 function setup(){
-    createCanvas(600, 600);
-    frameRate(5)
+    let canvas = createCanvas(600, 600);
+    canvas.position((windowWidth - width) / 2,(windowHeight - height) / 2)
+    frameRate(10);
     snake = new Snake()
+    pickLocation()
+    display = document.getElementById("SCORE")
+    HighDisplay = document.getElementById("Highscore")
 }
 
 function draw(){
-    background(50);
+    background(0);
+    switch (true){
+        case snake.die():
+            score = 0;
+    }
+    snake.die()
     snake.update();
     snake.show();
+
+    if(snake.eat(food)){
+        pickLocation()
+        score += 100;
+    }
+    display.textContent = "Score: " + score;
+    if(highScore < score){
+        highScore = score;
+    }
+    HighDisplay.textContent = "Highscore: " + highScore
+
+
+    fill(255,0,0)
+    rect(food.x, food.y, scl, scl);
 }
 
 function keyPressed(){
@@ -28,4 +56,11 @@ function keyPressed(){
             snake.dir(-1, 0);
             break;
     }
+}
+
+function pickLocation() {
+    let cols = floor(width/scl);
+    let rows = floor(height/scl);
+    food = createVector(floor(random(cols)), floor(random(rows)));
+    food.mult(scl)
 }
