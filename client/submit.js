@@ -1,6 +1,6 @@
 const form = document.getElementById("form");
 const scoreDiv = document.getElementById("scores")
-const API_URL = 'localhost' ? 'https://joe-danny-api-c7ldu3igw.vercel.app/snake' : 'http://localhost:8080/snake';
+const API_URL = 'localhost' ? 'https://joe-and-danny-api.vercel.app/snake' : 'http://localhost:8080/snake';
 
 
 showScores()
